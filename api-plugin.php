@@ -5,8 +5,8 @@ namespace NamePlugin;
 class NameApi {
     public $api_url;
 
-	// выложить вакансию
-	// $vacancy_params - объект, который хранит в себе информацию о новой вакансии (название, описание, зп и тд)
+	// РІС‹Р»РѕР¶РёС‚СЊ РІР°РєР°РЅСЃРёСЋ
+	// $vacancy_params - РѕР±СЉРµРєС‚, РєРѕС‚РѕСЂС‹Р№ С…СЂР°РЅРёС‚ РІ СЃРµР±Рµ РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ РЅРѕРІРѕР№ РІР°РєР°РЅСЃРёРё (РЅР°Р·РІР°РЅРёРµ, РѕРїРёСЃР°РЅРёРµ, Р·Рї Рё С‚Рґ)
     public function publish_vacancy($post, $vacancy_params) {
         global $wpdb;
 
@@ -19,7 +19,7 @@ class NameApi {
 		// sending post req
 		$res = $this->api_send($this->api_url . "/vacancy", $vacancy_params);
 		$res_o = json_decode($res);
-		// если в ответе api есть id созданной вакансии
+		// РµСЃР»Рё РІ РѕС‚РІРµС‚Рµ api РµСЃС‚СЊ id СЃРѕР·РґР°РЅРЅРѕР№ РІР°РєР°РЅСЃРёРё
 		if ($res !== false && is_object($res_o) && isset($res_o->id)) {
 			$ret = array_merge($res_o, $ret);
 			return $ret;
@@ -30,8 +30,8 @@ class NameApi {
 		return false;
     }    
 
-	// получить отклики вакансии.
-	// $vacancy_id - id вакансии
+	// РїРѕР»СѓС‡РёС‚СЊ РѕС‚РєР»РёРєРё РІР°РєР°РЅСЃРёРё.
+	// $vacancy_id - id РІР°РєР°РЅСЃРёРё
 	public function get_vacancy_negotations($post, $vacancy_id) {
 		global $wpdb;
 
@@ -44,10 +44,10 @@ class NameApi {
         $params = "vacancy_id=$vacancy_id&age_from=18&citizenship=113";
         $res = $this->api_send($this->api_url . 'negotiations/somecollection/?' . $params);
         $res_o = json_decode($res);
-		// если в api есть поле items, который хранит отклики
+		// РµСЃР»Рё РІ api РµСЃС‚СЊ РїРѕР»Рµ items, РєРѕС‚РѕСЂС‹Р№ С…СЂР°РЅРёС‚ РѕС‚РєР»РёРєРё
         if ($res !== false && is_object($res_o) && isset($res_o->items)) {
             $ret = array_merge($res_o->items, $ret);
-			// some code... различные проверки/фильтрации откликов
+			// some code... СЂР°Р·Р»РёС‡РЅС‹Рµ РїСЂРѕРІРµСЂРєРё/С„РёР»СЊС‚СЂР°С†РёРё РѕС‚РєР»РёРєРѕРІ
             return $ret;
         } else {
             return false;
@@ -57,12 +57,12 @@ class NameApi {
 	}
 
 	public function api_send_get() {
-		// Отправка GET запроса
+		// РћС‚РїСЂР°РІРєР° GET Р·Р°РїСЂРѕСЃР°
         return '';
     }
 
     public function api_send_post($api_url, $params) {
-		// Отправка POST запроса
+		// РћС‚РїСЂР°РІРєР° POST Р·Р°РїСЂРѕСЃР°
         return '';
     }
 }
